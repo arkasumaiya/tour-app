@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -11,6 +13,8 @@ import 'package:shelter/ui/views/bottom_nav_controller/sell_all.dart';
 import '../../../widgets/nav_home_categories.dart';
 
 class NavHome extends StatefulWidget {
+  const NavHome({Key? key}) : super(key: key);
+
   @override
   State<NavHome> createState() => _NavHomeState();
 }
