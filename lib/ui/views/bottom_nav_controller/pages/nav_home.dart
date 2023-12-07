@@ -68,7 +68,7 @@ class _NavHomeState extends State<NavHome> {
             CarouselSlider(
                 items: _carouselImages
                     .map((item) => Padding(
-                          padding: EdgeInsets.only(left: 3, right: 3),
+                          padding: const EdgeInsets.only(left: 3, right: 3),
                           child: Container(
                             decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -84,7 +84,7 @@ class _NavHomeState extends State<NavHome> {
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     viewportFraction: 0.9,
                     onPageChanged: (val, carouselPageChangedReason) {
                       setState(() {
@@ -97,8 +97,8 @@ class _NavHomeState extends State<NavHome> {
             Obx(
               () => DotsIndicator(
                 dotsCount:
-                    _carouselImages.length == 0 ? 1 : _carouselImages.length,
-                position: _currentIndex.value.toDouble(),
+                    _carouselImages.isEmpty ? 1 : _carouselImages.length,
+                position: _currentIndex.value.toInt(),
               ),
             ),
             Padding(
@@ -142,20 +142,20 @@ class _NavHomeState extends State<NavHome> {
             SizedBox(
               height: 5.h,
             ),
-            Container(
+            SizedBox(
                 height: 180.h,
                 child: FutureBuilder<QuerySnapshot>(
                     future: _futureDataForYou,
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasError) {
-                        return Text("Error");
+                        return const Text("Error");
                       }
                       if (snapshot.hasData) {
                         List<Map> items = parseData(snapshot.data);
                         return forYou(items);
                       }
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     })),
             SizedBox(
               height: 15.h,
@@ -168,20 +168,20 @@ class _NavHomeState extends State<NavHome> {
             SizedBox(
               height: 5.h,
             ),
-            Container(
+            SizedBox(
                 height: 180.h,
                 child: FutureBuilder<QuerySnapshot>(
                     future: _futureDataRecentlyAdded,
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasError) {
-                        return Text("Error");
+                        return const Text("Error");
                       }
                       if (snapshot.hasData) {
                         List<Map> items = parseData(snapshot.data);
                         return recentlyAdded(items);
                       }
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     })),
             SizedBox(
               height: 15.h,
@@ -193,20 +193,20 @@ class _NavHomeState extends State<NavHome> {
             SizedBox(
               height: 5.h,
             ),
-            Container(
+            SizedBox(
                 height: 80.h,
                 child: FutureBuilder<QuerySnapshot>(
                     future: _futureDataTopPlaces,
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasError) {
-                        return Text("Error");
+                        return const Text("Error");
                       }
                       if (snapshot.hasData) {
                         List<Map> items = parseData(snapshot.data);
                         return topPlaces(items);
                       }
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     })),
             SizedBox(
               height: 20.h,
@@ -249,7 +249,7 @@ ListView forYou(List<Map<dynamic, dynamic>> items) {
             width: 100.w,
             height: 180.h,
             decoration: BoxDecoration(
-              color: Color(0xFfC4C4C4),
+              color: const Color(0xFfC4C4C4),
               borderRadius: BorderRadius.all(
                 Radius.circular(7.r),
               ),
@@ -303,7 +303,7 @@ ListView recentlyAdded(List<Map<dynamic, dynamic>> items) {
             width: 100.w,
             height: 180.h,
             decoration: BoxDecoration(
-              color: Color(0xFfC4C4C4),
+              color: const Color(0xFfC4C4C4),
               borderRadius: BorderRadius.all(
                 Radius.circular(7.r),
               ),
@@ -357,7 +357,7 @@ ListView topPlaces(List<Map<dynamic, dynamic>> items) {
             width: 80.w,
             height: 80.h,
             decoration: BoxDecoration(
-              color: Color(0xFfC4C4C4),
+              color: const Color(0xFfC4C4C4),
               shape: BoxShape.circle,
               image: DecorationImage(
                   image: NetworkImage(thisItem['list_images'][0]),

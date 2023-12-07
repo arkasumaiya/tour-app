@@ -81,7 +81,7 @@ class OnboardingScreen extends StatelessWidget {
                               Obx(
                                 () => DotsIndicator(
                                   dotsCount: _lottieFiles.length,
-                                  position: _currentIndex.toDouble(),
+                                  position: _currentIndex.toInt(),
                                   decorator: DotsDecorator(),
                                 ),
                               ),

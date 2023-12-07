@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:shelter/ui/widgets/details_heading_description.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class DetailsSCreen extends StatefulWidget {
   DetailsSCreen(this.detailsData);
   Map detailsData;
@@ -19,9 +20,10 @@ class DetailsSCreen extends StatefulWidget {
 class _DetailsSCreenState extends State<DetailsSCreen> {
  
 
+  // ignore: unused_field
   final RxInt _currentIndex = 0.obs;
 
-//add to favourite
+//add to Favourite
    addtoFavourite() async {
     FirebaseFirestore.instance
         .collection('Users-Favourite')
@@ -64,23 +66,23 @@ class _DetailsSCreenState extends State<DetailsSCreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text("Details"),
+        title: const Text("Details"),
         actions: [
            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: checkFav(context),
               builder: (context, snapshot) {
-                if (snapshot.data == null) return Text("");
+                if (snapshot.data == null) return const Text("");
                 return IconButton(
                   icon: snapshot.data!.docs.length == 0
-                      ? Icon(
+                      ? const Icon(
                           Icons.favorite_outline,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),
                   onPressed: () {
-                    snapshot.data!.docs.length == 0
+                    snapshot.data!.docs.isEmpty
                         ? addtoFavourite()
                         : Fluttertoast.showToast(
                             msg: "Already Added",
@@ -145,11 +147,11 @@ class _DetailsSCreenState extends State<DetailsSCreen> {
                       IconButton(
                           onPressed: () {
                              launchUrl(Uri.parse("tel:${widget.detailsData['list_phone']}"));
-                          }, icon: Icon(Icons.call_outlined)),
+                          }, icon: const Icon(Icons.call_outlined)),
                       IconButton(
                           onPressed: () {
                             launchUrl(Uri.parse("sms:${widget.detailsData['list_phone']}"));
-                          }, icon: Icon(Icons.message_outlined)),
+                          }, icon: const Icon(Icons.message_outlined)),
                     ],
                   )
                 ],
