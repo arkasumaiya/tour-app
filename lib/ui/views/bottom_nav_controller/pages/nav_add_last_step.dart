@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shelter/ui/route/route.dart';
 import 'package:shelter/ui/styles/styles.dart';
 import '../../../widgets/customTextField.dart';
 import '../../../widgets/violetButton.dart';
@@ -48,7 +49,7 @@ class _NavAddLastStepState extends State<NavAddLastStep> {
       if (multipleImages != null) {
         AppStyles().progressDialog(context);
         for (int i = 0; i < multipleImages!.length; i += 1) {
-          // upload to stroage
+          // upload to Stroage
           File imageFile = File(multipleImages![i].path);
 
           UploadTask uploadTask = storage
